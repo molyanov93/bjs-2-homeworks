@@ -1,27 +1,20 @@
 function getArrayParams(...arr) {
 	let mass = [...arr];
-	let min, max, sum, avg;
-	min = +Infinity;
+	let min, max, avg, sum = 0;
+	min = Infinity;
 	max = -Infinity;
-	sum = 0;
-	if (mass.length > 0) {
-		for (let i = 0; i < mass.length; i++) {
-			if (mass[i] < min) {
-				min = mass[i];
-			}
-
-			if (mass[i] > max) {
-				max = mass[i];
-			}
-			sum += mass[i];
-			avg = sum / mass.length;
-			avg = Number(avg.toFixed(2));
+	for (let i = 0; i < mass.length; i++) {
+		if (mass[i] < min) {
+			min = mass[i];
 		}
-	} else {
-		min = mass[i];
-		max = mass[i];
-		avg = mass[i];
+
+		if (mass[i] > max) {
+			max = mass[i];
+		}
+		sum += mass[i];
 	}
+
+	avg = Number((sum / mass.length).toFixed(2));
 
 	return {
 		min: min,
@@ -31,58 +24,45 @@ function getArrayParams(...arr) {
 }
 
 function summElementsWorker(...arr) {
-	mass = [...arr];
-	sum = 0;
+	let sum = 0;
 
-	for (let i = 0; i < mass.length; i++) {
-		sum += mass[i];
+	for (let i = 0; i < arr.length; i++) {
+		sum += arr[i];
 	}
 	return sum;
 }
 
 function differenceMaxMinWorker(...arr) {
-	mass = [...arr];
 
-	if (mass.length > 0) {
-		return Math.max(...mass) - Math.min(...mass);
-	} else return 0;
+	if ([...arr].length == 0) return 0;
+	else return Math.max(...[...arr]) - Math.min(...[...arr]);
 }
 
 function differenceEvenOddWorker(...arr) {
-	mass = [...arr];
 	let sumOdd = 0;
-	let sumEven = 0; // Четные
-	if (mass.length == 1) {
-		sumEven = 0;
-	} else {
-		for (let i = 0; i < mass.length; i++) {
-			if (mass[i] % 2 == 0) {
-				sumEven += mass[i];
-			} else sumOdd += mass[i];
-		}
-		return (sumEven - sumOdd);
+	let sumEven = 0;
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] % 2 == 0) {
+			sumEven += arr[i];
+		} else sumOdd += arr[i];
 	}
+	return sumEven - sumOdd;
 }
 
 function averageEvenElementsWorker(...arr) {
-	mass = [...arr];
-	let average;
 	let counter = 0;
-	let sumEven = 0; // Четные
-	let sumOdd = 0;
-	if (mass.length == 0) {
-		average = 0;
-	} else {
-		for (let i = 0; i < mass.length; i++) {
-			if (mass[i] % 2 == 0) {
-				sumEven += mass[i];
-				counter++;
-			} else sumOdd += mass[i];
-		}
-		average = sumEven / counter;
-	}
+	let sumEven = 0;
 
-	return average;
+	if ([...arr].length == 0) return 0
+	else {
+		for (let i = 0; i < [...arr].length; i++) {
+			if ([...arr][i] % 2 == 0) {
+				sumEven += [...arr][i];
+				counter++;
+			}
+		}
+		return sumEven / counter;
+	}
 }
 
 function makeWork(arrOfArr, func) {
