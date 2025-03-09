@@ -34,14 +34,13 @@ const sherlock = new PrintEditionItem(
 
 console.log(sherlock.releaseDate); //2019
 console.log(sherlock.state); //100
-
 sherlock.fix();
 console.log(sherlock.state); //100
 
 
 class Magazine extends PrintEditionItem {
 	constructor(author, name, releaseDate, pagesCount) {
-		super(name, releaseDate, pagesCount);
+		super(author, name, releaseDate, pagesCount);
 		this.type = "magazine";
 		this.author = author;
 	}
@@ -50,14 +49,15 @@ class Magazine extends PrintEditionItem {
 class Book extends PrintEditionItem {
 	constructor(author, name, releaseDate, pagesCount) {
 		super(name, releaseDate, pagesCount);
+        this.author = author;
 		this.type = "book";
-		this.author = author;
+		
 	}
 }
 
 class NovelBook extends Book {
-	constructor(author, name, releaseDate, pagesCount) {
-		super(name, releaseDate, pagesCount);
+	constructor(author,name, releaseDate, pagesCount) {
+		super(author,name, releaseDate, pagesCount);
 		this.author = author;
 		this.type = "novel";
 	}
@@ -65,15 +65,15 @@ class NovelBook extends Book {
 
 class FantasticBook extends Book {
 	constructor(author, name, releaseDate, pagesCount) {
-		super(name, releaseDate, pagesCount);
+		super(author,name, releaseDate, pagesCount);
 		this.author = author;
 		this.type = "fantastic";
 	}
 }
 
 class DetectiveBook extends Book {
-	constructor(author, name, releaseDate, pagesCount) {
-		super(name, releaseDate, pagesCount);
+	constructor(author,name, releaseDate, pagesCount) {
+		super(author,name, releaseDate, pagesCount);
 		this.author = author;
 		this.type = "detective";
 	}
